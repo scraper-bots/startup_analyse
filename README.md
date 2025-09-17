@@ -14,7 +14,11 @@ This repository contains a comprehensive analysis of startup data from PASHA Hol
 
 ## 1. Status Distribution Analysis
 
+### Pie Chart View
 ![Status Distribution](assets/status_distribution.png)
+
+### Bar Chart View (Alternative)
+![Status Distribution Bars](assets/status_distribution_bars.png)
 
 **Key Insights:**
 - **56.6% Rejected** (334 startups) - More than half of all submissions
