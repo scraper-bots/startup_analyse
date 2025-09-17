@@ -1,0 +1,15 @@
+## Overall Statistics
+- **Total Startups Analyzed**: 590
+- **Approval Rate**: 3.6% (21 out of 590)
+- **Peak Submission Year**: 2024 with 160 startups
+- **Growth Rate**: -81.7% from 2021 to 2025
+
+## Business Readiness Analysis
+- **Business Model Definition**: 39.2% of startups have defined business models
+- **Problem Identification**: 39.2% of startups have clearly identified problems
+- **Value Proposition**: 38.8% of startups have defined value propositions
+
+## Key Recommendations
+- **Focus on Quality**: Low approval rate suggests need for better startup preparation and mentoring
+- **Encourage Complete Submissions**: Startups with complete business models, problem definitions, and value propositions are more likely to succeed
+- **Seasonal Planning**: Consider submission timing patterns for better resource allocation
