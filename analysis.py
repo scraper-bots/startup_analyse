@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Create individual chart files and move to assets folder
+Complete Startup Data Analysis Script
+Analyzes startup data from ideas.csv and generates all charts and insights
 """
 
 import pandas as pd
@@ -9,8 +10,9 @@ import seaborn as sns
 import numpy as np
 import os
 
-def create_individual_charts():
+def main():
     # Load data
+    print("Loading startup data...")
     df = pd.read_csv('ideas.csv', encoding='utf-8')
 
     # Convert dates
@@ -24,26 +26,35 @@ def create_individual_charts():
 
     # Set style
     plt.style.use('seaborn-v0_8')
-    sns.set_palette("husl")
 
-    # 1. Status Distribution Chart
-    plt.figure(figsize=(10, 8))
-    status_counts = df['status'].value_counts()
-    colors = plt.cm.Set3(np.linspace(0, 1, len(status_counts)))
-    wedges, texts, autotexts = plt.pie(status_counts.values, labels=status_counts.index,
-                                      autopct='%1.1f%%', colors=colors, startangle=90)
+    print("Creating visualizations...")
+
+    # 1. Status Distribution (Bar Chart)
+    plt.figure(figsize=(12, 8))
+    status_counts = df['status'].value_counts().sort_values(ascending=True)
+    colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57', '#FF9FF3', '#54A0FF', '#5F27CD']
+
+    bars = plt.barh(range(len(status_counts)), status_counts.values,
+                   color=colors[:len(status_counts)], alpha=0.8)
+
+    plt.yticks(range(len(status_counts)), status_counts.index, fontsize=12)
+    plt.xlabel('Number of Startups', fontsize=12)
     plt.title('Startup Status Distribution', fontsize=16, fontweight='bold', pad=20)
 
-    for autotext in autotexts:
-        autotext.set_color('white')
-        autotext.set_fontweight('bold')
-        autotext.set_fontsize(11)
+    total = sum(status_counts.values)
+    for i, bar in enumerate(bars):
+        width = bar.get_width()
+        percentage = (width / total) * 100
+        plt.text(width + 5, bar.get_y() + bar.get_height()/2,
+                f'{int(width)} ({percentage:.1f}%)',
+                ha='left', va='center', fontweight='bold', fontsize=11)
 
+    plt.grid(axis='x', alpha=0.3)
     plt.tight_layout()
-    plt.savefig('assets/status_distribution.png', dpi=300, bbox_inches='tight')
+    plt.savefig('assets/status_distribution_bars.png', dpi=300, bbox_inches='tight')
     plt.close()
 
-    # 2. Yearly Submissions Chart
+    # 2. Yearly Submissions
     plt.figure(figsize=(12, 6))
     yearly_counts = df['year'].value_counts().sort_index()
     bars = plt.bar(yearly_counts.index, yearly_counts.values, color='steelblue', alpha=0.8)
@@ -89,7 +100,7 @@ def create_individual_charts():
     plt.savefig('assets/quarterly_trends.png', dpi=300, bbox_inches='tight')
     plt.close()
 
-    # 5. Business Readiness Chart
+    # 5. Business Readiness
     plt.figure(figsize=(10, 6))
     total = len(df)
     completion_metrics = {
@@ -117,7 +128,7 @@ def create_individual_charts():
     plt.savefig('assets/business_readiness.png', dpi=300, bbox_inches='tight')
     plt.close()
 
-    # 6. Summary Stats Chart
+    # 6. Summary Stats
     plt.figure(figsize=(12, 6))
     status_counts = df['status'].value_counts()
     summary_data = {
@@ -144,13 +155,13 @@ def create_individual_charts():
     plt.savefig('assets/summary_statistics.png', dpi=300, bbox_inches='tight')
     plt.close()
 
-    print("Individual charts created in assets/ folder:")
-    print("- status_distribution.png")
-    print("- yearly_submissions.png")
-    print("- monthly_heatmap.png")
-    print("- quarterly_trends.png")
-    print("- business_readiness.png")
-    print("- summary_statistics.png")
+    print("\nAnalysis complete! Generated charts:")
+    print("- assets/status_distribution_bars.png")
+    print("- assets/yearly_submissions.png")
+    print("- assets/monthly_heatmap.png")
+    print("- assets/quarterly_trends.png")
+    print("- assets/business_readiness.png")
+    print("- assets/summary_statistics.png")
 
 if __name__ == "__main__":
-    create_individual_charts()
+    main()

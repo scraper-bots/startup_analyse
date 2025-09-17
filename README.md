@@ -14,11 +14,7 @@ This repository contains a comprehensive analysis of startup data from PASHA Hol
 
 ## 1. Status Distribution Analysis
 
-### Pie Chart View
-![Status Distribution](assets/status_distribution.png)
-
-### Bar Chart View (Alternative)
-![Status Distribution Bars](assets/status_distribution_bars.png)
+![Status Distribution](assets/status_distribution_bars.png)
 
 **Key Insights:**
 - **56.6% Rejected** (334 startups) - More than half of all submissions
@@ -128,18 +124,17 @@ This repository contains a comprehensive analysis of startup data from PASHA Hol
 **Repository Structure:**
 ```
 startup_analyse/
-├── README.md                    # This comprehensive analysis
-├── ideas.csv                    # Raw startup data (590 records)
-├── create_individual_charts.py  # Chart generation script
-├── main_ideas.py                # Data extraction script
+├── README.md                       # This comprehensive analysis
+├── ideas.csv                       # Raw startup data (590 records)
+├── analysis.py                     # Complete analysis script
+├── main_ideas.py                   # Data extraction script
 └── assets/
-    ├── status_distribution.png
+    ├── status_distribution_bars.png
     ├── yearly_submissions.png
     ├── monthly_heatmap.png
     ├── quarterly_trends.png
     ├── business_readiness.png
     ├── summary_statistics.png
-    ├── startup_analysis.py
     └── startup_insights.txt
 ```
 
@@ -148,11 +143,8 @@ startup_analyse/
 # Install dependencies
 pip install pandas matplotlib seaborn numpy
 
-# Create individual charts
-python create_individual_charts.py
-
-# Run full analysis
-python assets/startup_analysis.py
+# Run complete analysis
+python analysis.py
 ```
 
 ---
